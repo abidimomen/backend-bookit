@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const bcrypt = require("bcrypt");
 const User = mongoose.model(
   "User",
   new mongoose.Schema({
@@ -18,6 +17,7 @@ const User = mongoose.model(
     password: {
       type: String,
       required: true,
+      select: false,
     },
   })
 );
