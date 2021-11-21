@@ -38,7 +38,7 @@ const login = async (req, res) => {
     );
     let auth = "Bearer " + token;
     res.setHeader("Authorization", auth);
-    return res.status(200).send({ auth: true, token: token });
+    return res.status(200).send({ auth: true, token: auth });
   } catch (error) {
     if (String(error).includes("user not found")) {
       return res.status(404).json({
@@ -59,4 +59,41 @@ const login = async (req, res) => {
   }
 };
 
-module.exports = { register, login };
+const updateAccount = async (req, res) => {
+  const { id } = req.params;
+  const { firstname, lastname, password } = req.body;
+  try {
+    const payload = await userService.updateAccount(id, {
+      firstname,
+      lastname,
+      password,
+    });
+    return res.status(200).json({
+      data: payload,
+      message: "User updated",
+    });
+  } catch (error) {
+    return res.status(500).json({
+      error: true,
+      message: error,
+    });
+  }
+};
+
+const deleteAccount = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const payload = await userService.deleteAccount(id);
+    return res.status(200).json({
+      data: payload,
+      message: "User deleted",
+    });
+  } catch (error) {
+    return res.status(500).json({
+      error: true,
+      message: error,
+    });
+  }
+};
+
+module.exports = { register, login, updateAccount, deleteAccount };

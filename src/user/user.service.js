@@ -49,4 +49,39 @@ const login = async (email, password) => {
     throw error;
   }
 };
-module.exports = { register, login };
+
+const updateAccount = async (id, input) => {
+  try {
+    const userExists = await User.findById(id);
+    if (!userExists) {
+      throw new Error("user not found");
+    } else {
+      for (const key in input) {
+        if (input[key] !== undefined && input[key].length !== 0) {
+          // the attributes to update are the strings with a positive length
+          if (key === "password") {
+            /**
+             * in case we will update the password then we will
+             * save the new password hash with md5
+             */
+            userExists.password = hashPassword(input[key]);
+          } else {
+            userExists[key] = input[key];
+          }
+        }
+      }
+      await User.findByIdAndUpdate(id, userExists);
+    }
+  } catch (error) {
+    throw error;
+  }
+};
+
+const deleteAccount = async (id) => {
+  try {
+    await User.findByIdAndRemove(id);
+  } catch (error) {
+    throw error;
+  }
+};
+module.exports = { register, login, updateAccount, deleteAccount };

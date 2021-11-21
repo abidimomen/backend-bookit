@@ -1,26 +1,26 @@
 const mongoose = require("mongoose");
-const User = mongoose.model(
-  "User",
+const { Event } = require("./Event.js");
+
+const Movie = Event.discriminator(
+  "Movie",
   new mongoose.Schema({
-    email: {
-      type: String,
-      required: true,
-      unique: true,
-    },
-    firstname: {
+    imdbRate: {
       type: String,
       required: true,
     },
-    lastname: {
+    trailer: {
       type: String,
       required: true,
     },
-    password: {
+    cinemaName: {
       type: String,
       required: true,
-      select: false,
+    },
+    description: {
+      type: String,
+      required: true,
     },
   })
 );
 
-exports.User = User;
+exports.Movie = Movie;

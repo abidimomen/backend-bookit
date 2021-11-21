@@ -6,15 +6,13 @@ const verifyToken = (req, res, next) => {
   // get token from the header and remove the bearer from start
   let auth = req.headers["authorization"];
   let token = auth.split(" ")[1];
-
   if (token == null)
     return res.status(401).json({ auth: false, message: "No token provided." });
-
   // check token using the Secret word for security measures
   jwt.verify(token, process.env.SECRET, (err, res) => {
     if (err)
       return res.status(403).json({ auth: false, message: "Forbidden." });
-    next();
+    if (res) next();
   });
 };
 
