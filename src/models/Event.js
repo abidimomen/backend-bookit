@@ -1,15 +1,21 @@
+const { number } = require("joi");
 const mongoose = require("mongoose");
 
-const GeoSchema = mongoose.Schema({
-  type: {
-    type: String,
-    default: "Point",
-  },
-  coordinates: {
-    type: [Number], //the type is an array of numbers
-    index: "2dsphere",
-  },
-});
+// const baseOptions = {
+//   discriminatorKey: '__type',
+//   collection: 'Event'
+// }
+
+// const GeoSchema = mongoose.Schema({
+//   type: {
+//     type: String,
+//     default: "Point",
+//   },
+//   coordinates: {
+//     type: [Number], //the type is an array of numbers
+//     index: "2dsphere",
+//   },
+// });
 
 const Event = mongoose.model(
   "Event",
@@ -18,16 +24,28 @@ const Event = mongoose.model(
       type: String,
       required: true,
     },
+    host: {
+      type: String,
+      required: true,
+    },
     date: {
       type: Date,
       required: true,
     },
     duration: {
-      type: String,
+      type: Number,
       required: true,
     },
+    creationDate: {
+      type: Date,
+      required: true,
+    },
+    // location: {
+    //   type: GeoSchema,
+    // },
     location: {
-      type: GeoSchema,
+      type: String,
+      required: true,
     },
     maxPart: {
       type: Number,
@@ -40,6 +58,14 @@ const Event = mongoose.model(
     rating: {
       type: Number,
       required: true,
+    },
+    description: {
+      type: String,
+      required: true,
+    },
+    datalink: {
+      type: String,
+      
     },
   })
 );
