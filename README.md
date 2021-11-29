@@ -72,7 +72,7 @@ $ npm run start:dev
 ```
 
 ## Interfaces 
-![0e651a74ded4fadd0cdc74a5f552a2dc](https://user-images.githubusercontent.com/79226487/143953801-8eb2083c-deb4-427f-b89d-a21d6e96479b.png
+
 ![a1ffa3349445e24aaaa47e8a2cc1f13e](https://user-images.githubusercontent.com/79226487/143953824-c6e4d4cf-98eb-4930-a2b8-9a3976194c49.png)
 -
 ![f2c94e85f29ce9f90017e69999046806](https://user-images.githubusercontent.com/79226487/143953834-25c2e7ce-74fb-40d1-9d8e-55da8759dd7c.png)
