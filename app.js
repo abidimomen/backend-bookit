@@ -29,8 +29,8 @@ const swaggerOptions = {
 const swaggerDocs = swaggerJsDoc(swaggerOptions);
 //console.log(swaggerDocs);
 //console.log(swaggerOptions);
-
-
+const port =  process.env.PORT || 3000
+ 
 (async () => {
   try {
     await connect();
@@ -53,7 +53,7 @@ const swaggerDocs = swaggerJsDoc(swaggerOptions);
   app.use("/users", usersRouter);
   app.use("/events", eventsRouter);
   app.use("/organizers", organizersRouter);
-  app.listen(3000, () => {
+  app.listen(port, () => {
     console.log("server is running on http://localhost:3000");
   });
 })();
