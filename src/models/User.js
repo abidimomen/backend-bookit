@@ -1,3 +1,4 @@
+const { number, boolean } = require("joi");
 const mongoose = require("mongoose");
 const User = mongoose.model(
   "User",
@@ -20,6 +21,16 @@ const User = mongoose.model(
       required: true,
       select: false,
     },
+    isVerified: {
+      type: Number,
+      // required: true,
+      select: true,
+    },
+
+    events:[{
+      type : mongoose.Schema.Types.ObjectId,
+      ref : 'Event'
+    }]
   })
 );
 

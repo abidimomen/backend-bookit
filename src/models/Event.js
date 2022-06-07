@@ -65,8 +65,21 @@ const Event = mongoose.model(
     },
     datalink: {
       type: String,
-      
     },
+    image: {
+      type: String,
+    },
+    organizer: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Organizer",
+    },
+    users: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+      },
+    ],
+    eventtype: [{ type: String }],
   })
 );
 

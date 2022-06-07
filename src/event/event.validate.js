@@ -11,7 +11,8 @@ const createEventSchema = Joi.object().keys({
   currentPart: Joi.number().required(),
   rating: Joi.number().required(),
   description: Joi.string().max(128).required(),
-  datalink: Joi.string().max(128).required(),
+  datalink: Joi.string().regex(/^(?:http:\/\/|https:\/\/)?(?:www\.)?(?:imdb.com\/title\/)?(tt[0-9]*)/).max(128).required(),
+  image: Joi.string(),
 });
 
 const creatingEvent = (req, res, next) => {
@@ -28,7 +29,9 @@ const creatingEvent = (req, res, next) => {
     rating,
     description,
     datalink,
+    image,
   } = req.body;
+  
   createEventSchema
     .validateAsync({
       title,
@@ -42,6 +45,7 @@ const creatingEvent = (req, res, next) => {
       rating,
       description,
       datalink,
+      image,
     })
     .then((res) => {
       next();
