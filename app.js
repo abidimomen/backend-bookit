@@ -29,7 +29,7 @@ const swaggerOptions = {
 const swaggerDocs = swaggerJsDoc(swaggerOptions);
 //console.log(swaggerDocs);
 //console.log(swaggerOptions);
-const port =  process.env.PORT || 3000
+const port =  process.env.PORT || 3000;
  
 (async () => {
   try {
